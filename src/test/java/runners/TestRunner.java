@@ -8,7 +8,7 @@ public class TestRunner {
     @Karate.Test
     Results testAPI() {
         return Karate.run("classpath:features")
-                .tags("@smoke")
+                .tags("@data")
                 .parallel(3);
     }
 }
