@@ -1,14 +1,19 @@
 package runners;
 
 import com.intuit.karate.Results;
-import com.intuit.karate.junit5.Karate;
+import com.intuit.karate.Runner;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class TestRunner {
 
-    @Karate.Test
-    Results testAPI() {
-        return Karate.run("classpath:features")
+    @Test
+    void testAPI() {
+
+        Results results = Runner.path("classpath:features")
                 .tags("@data")
                 .parallel(3);
+
+        assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
 }

@@ -10,8 +10,8 @@ Feature: data driven testing dem
 	* print 'Base URL:', baseUrl
 	* def firstname = '<firstname>'
 	* def lastname = '<lastname>'
-	* def totalprice = '<totalprice>'
-	* def depositpaid = '<depositpaid>'
+* def totalprice = <totalprice>
+* def depositpaid = <depositpaid>
 	* def checkin = '<checkin>'
 	* def checkout = '<checkout>'
 	* def additionalneeds = '<additionalneeds>'
