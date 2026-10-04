@@ -4,12 +4,35 @@ on:
   push:
     branches:
       - main
+
   pull_request:
     branches:
       - main
+
   workflow_dispatch:
+    inputs:
+
+      environment:
+        description: 'Select environment'
+        required: true
+        default: 'qa'
+        type: choice
+        options:
+          - qa
+          - uat
+
+      tag:
+        description: 'Select test tag'
+        required: true
+        default: '@data'
+        type: choice
+        options:
+          - '@data'
+          - '@smoke'
+          - '@regression'
 
 jobs:
+
   karate-tests:
 
     runs-on: ubuntu-latest
@@ -27,7 +50,10 @@ jobs:
           cache: maven
 
       - name: Run Karate tests
-        run: mvn clean test -Dkarate.env=qa
+        run: |
+          mvn clean test \
+            -Dkarate.env=${{ inputs.environment }} \
+            -Dkarate.tag=${{ inputs.tag }}
 
       - name: Upload Karate reports
         if: always()

@@ -11,7 +11,7 @@ public class TestRunner {
     void testAPI() {
 
         Results results = Runner.path("classpath:features")
-                .tags("@data")
+                .tags(System.getProperty("karate.tag", "@data"))
                 .parallel(3);
 
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
